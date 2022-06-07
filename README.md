@@ -1,2 +1,1 @@
-# somerville-tech-blog
-Created with CodeSandbox
+# Somerville Tech Blog
