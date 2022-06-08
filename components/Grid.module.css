@@ -1,0 +1,25 @@
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr repeat(2, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  grid-auto-rows: 2fr;
+  gap: 1em 0px;
+  grid-auto-flow: column dense;
+  grid-template-areas:
+    "article-large article-main . ."
+    "article-large article-main . ."
+    "article-large article-main . ."
+    "article-small article-main . .";
+}
+
+.article-large {
+  grid-area: article-large;
+}
+
+.article-main {
+  grid-area: article-main;
+}
+
+.article-small {
+  grid-area: article-small;
+}

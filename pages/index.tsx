@@ -1,25 +1,19 @@
 import React, { useId } from "react";
-import Link from "next/link";
+import { motion } from "framer-motion";
 import ArticleList from "../components/ArticleList";
 
-export default function IndexPage({ posts }) {
-  return <ArticleList articles={posts} />;
+export default function IndexPage({ articles }) {
+  return <ArticleList articles={articles} />;
 }
 
 export async function getStaticProps() {
-  // Call an external API endpoint to get posts.
-  // You can use any data fetching library
-  const res = await fetch(
-    `${process.env.API_BASE_URL}news?access_key=${process.env.API_ACCESS_KEY}&countries=gb&sources=-mail&sort=published_desc`
-  );
-  // console.log(res);
-  const posts = await res.json();
+  const res = await fetch("http://localhost:3000/api/news");
 
-  // By returning { props: { posts } }, the Blog component
-  // will receive `posts` as a prop at build time
+  const articles = await res.json();
+
   return {
     props: {
-      posts
+      articles
     },
     revalidate: 10000
   };

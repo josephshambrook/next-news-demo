@@ -1,16 +1,23 @@
 :root {
-  --red: rgb(216, 32, 54);
+  /* AND colours */
+  /* --red: rgb(216, 32, 54);
   --orange: rgb(255, 121, 0);
   --yellow: rgb(255, 200, 0);
   --green: rgb(51, 125, 15);
   --blue: rgb(31, 115, 194);
   --purple: rgb(125, 65, 200);
   --pink: rgb(230, 100, 197);
-  --charcoal: rgb(50, 50, 50);
+  --charcoal: rgb(50, 50, 50); */
+
+  --bkgd: #f8f4ed;
+  --orange: #f1c0a5;
+  --yellow: #f5e086;
+  --black: #000002;
+  --blue: #c7dcde;
 }
 
 body {
-  background-color: ghostwhite;
+  background-color: var(--bkgd);
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial,
     sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }

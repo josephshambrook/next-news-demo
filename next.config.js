@@ -1,5 +1,14 @@
-const withMarkdoc = require("@markdoc/next.js");
+const config = {
+  images: {
+    domains: [
+      "static.independent.co.uk",
+      "metro.co.uk",
+      "i2-prod.manchestereveningnews.co.uk",
+      "i2-prod.business-live.co.uk",
+      "static.standard.co.uk",
+      "www.expressandstar.com"
+    ]
+  }
+};
 
-module.exports = withMarkdoc(/* options */)({
-  pageExtensions: ["md", "mdoc", "js", "jsx", "ts", "tsx"]
-});
+module.exports = config;

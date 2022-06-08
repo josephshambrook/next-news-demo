@@ -13,14 +13,14 @@
 
 .header {
   grid-area: header;
-  background-color: var(--red);
-  color: white;
   display: block;
   font-size: 2rem;
-  font-weight: bold;
+  font-weight: 700;
   padding: 2rem 0;
   text-align: center;
-  box-shadow: 5px 10px 5px #aaaaaa;
+  text-decoration: underline;
+  text-underline-offset: 10px;
+  text-decoration-thickness: 2px;
 }
 
 .footer {
