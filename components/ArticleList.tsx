@@ -1,9 +1,10 @@
 import React from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Article from "./Article";
+import styles from "./Grid.module.css";
 
 const ArticleList = ({ articles }) => {
-  const ARTICLES_PER_PAGE = 3;
+  const ARTICLES_PER_PAGE = 14;
 
   const [posts, setPosts] = React.useState(
     articles.slice(0, ARTICLES_PER_PAGE)
@@ -11,22 +12,21 @@ const ArticleList = ({ articles }) => {
   const [hasMore, setHasMore] = React.useState(true);
 
   const getMoreArticles = () => {
-    console.log("getting more articles");
     if (posts.length >= articles.length) {
-      console.log("reached the end");
       setHasMore(false);
       return;
     }
 
     setPosts(
       posts.concat(
-        articles.slice(posts.length - 1, posts.length + ARTICLES_PER_PAGE)
+        articles.slice(posts.length, posts.length + ARTICLES_PER_PAGE)
       )
     );
   };
 
   return (
     <InfiniteScroll
+      className={styles.container}
       dataLength={posts.length}
       next={getMoreArticles}
       hasMore={hasMore}

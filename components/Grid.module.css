@@ -1,25 +1,26 @@
-.container {
-  display: grid;
-  grid-template-columns: 1fr 2fr repeat(2, 1fr);
-  grid-template-rows: repeat(4, 1fr);
-  grid-auto-rows: 2fr;
-  gap: 1em 0px;
-  grid-auto-flow: column dense;
-  grid-template-areas:
-    "article-large article-main . ."
-    "article-large article-main . ."
-    "article-large article-main . ."
-    "article-small article-main . .";
+@media (min-width: 1100px) {
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 2fr repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-auto-rows: 2fr;
+    gap: 2rem;
+    grid-auto-flow: row dense;
+    padding: 2rem;
+  }
+
+  /* .article > :nth-child(1) {
+    display: none;
+  } */
 }
 
-.article-large {
-  grid-area: article-large;
+.headline {
+  font-family: serif;
+  font-size: 2rem;
 }
 
-.article-main {
-  grid-area: article-main;
-}
-
-.article-small {
-  grid-area: article-small;
+.image-wrapper {
+  position: relative;
+  height: 300px;
+  width: 100%;
 }

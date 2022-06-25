@@ -13,7 +13,8 @@ type PostProps = {
 function Next({ href }: { href: string }) {
   return (
     <Link href={href}>
-      <a>Next</a>
+      {" "}
+      <a>Next</a>{" "}
     </Link>
   );
 }
@@ -40,19 +41,25 @@ const variants = {
 
 export default function Post({ article, next, previous }: PostProps) {
   return (
-    <motion.div
-      initial="initial"
-      animate="enter"
-      exit="exit"
-      variants={variants}
-    >
-      <Link href="/">
-        <a>Home</a>
-      </Link>
-      <h1>{article.title}</h1>
-      <Previous href={previous} />
-      <Next href={next} />
-    </motion.div>
+    <>
+      <motion.div
+        initial="initial"
+        animate="enter"
+        exit="exit"
+        variants={variants}
+      >
+        <Link href="/">
+          <a>Home</a>
+        </Link>
+        <h1>{article.title}</h1>
+
+        <a href={previous}>Previous</a>
+
+        <br></br>
+
+        <a href={next}>Next</a>
+      </motion.div>
+    </>
   );
 }
 
