@@ -1,4 +1,6 @@
-# Somerville Tech Blog
+# News site demo, with Next.js
+
+> This was hacked together during a training day at work (with some tweaks afterwards). Code quality was not a priority.
 
 ## Environment variables
 
