@@ -83,3 +83,45 @@
 .image-wrapper-lg {
   height: 300px;
 }
+
+.newspaper {
+  margin-top: 3.5rem;
+  margin-left: 2rem;
+  background: #fff;
+  box-shadow: 3px 6px 7px rgba(0, 0, 0, 0.3);
+  /* margin: 26px auto 0; */
+  max-width: 550px;
+  min-height: 300px;
+  padding: 24px;
+  position: relative;
+  width: 80%;
+}
+.newspaper:before,
+.newspaper:after {
+  content: "";
+  height: 98%;
+  position: absolute;
+  width: 100%;
+  z-index: -1;
+}
+.newspaper:before {
+  background: #fafafa;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+  left: -5px;
+  top: 4px;
+  transform: rotate(-3.5deg);
+}
+.newspaper:after {
+  background: #f6f6f6;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+  right: -3px;
+  top: 1px;
+  transform: rotate(4.4deg);
+}
+
+.newspaper:hover {
+  background: ghostwhite;
+  left: 3px;
+  top: 2px;
+  transform: rotate(-1deg);
+}
