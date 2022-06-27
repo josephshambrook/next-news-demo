@@ -9,8 +9,6 @@ export function Layout(props) {
       <header className={layoutStyles.header}>
         <a href="/"> Latest updates</a>
       </header>
-      {/* <main className={layoutStyles.content} {...props} /> */}
-
       <motion.div
         variants={newspaper}
         initial="hidden"

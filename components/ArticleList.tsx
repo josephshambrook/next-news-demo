@@ -38,36 +38,34 @@ const ArticleList = ({ articles }: { articles: ArticleType[] }) => {
   };
 
   return (
-    <>
-      <InfiniteScroll
-        dataLength={displayedGroups.length}
-        next={getMoreGroups}
-        hasMore={hasMore}
-        loader={<h4>Loading...</h4>}
-        endMessage={
-          <p style={{ textAlign: "center" }}>
-            <b>Yay! You have seen it all</b>
-          </p>
-        }
-      >
-        {displayedGroups.map((posts) => {
-          return (
-            <div className={styles.container}>
-              {posts.map((article: ArticleType, index: number) => {
-                const placementIndex = Math.floor(index % ARTICLES_PER_ROW) + 1;
-                return (
-                  <Article
-                    key={index}
-                    placementIndex={placementIndex}
-                    {...article}
-                  />
-                );
-              })}
-            </div>
-          );
-        })}
-      </InfiniteScroll>
-    </>
+    <InfiniteScroll
+      dataLength={displayedGroups.length}
+      next={getMoreGroups}
+      hasMore={hasMore}
+      loader={<h4>Loading...</h4>}
+      endMessage={
+        <p style={{ textAlign: "center" }}>
+          <b>Yay! You have seen it all</b>
+        </p>
+      }
+    >
+      {displayedGroups.map((posts) => {
+        return (
+          <div className={styles.container}>
+            {posts.map((article: ArticleType, index: number) => {
+              const placementIndex = Math.floor(index % ARTICLES_PER_ROW) + 1;
+              return (
+                <Article
+                  key={index}
+                  placementIndex={placementIndex}
+                  {...article}
+                />
+              );
+            })}
+          </div>
+        );
+      })}
+    </InfiniteScroll>
   );
 };
 
