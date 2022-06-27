@@ -16,7 +16,6 @@ type PostProps = {
 };
 
 export default function Post({ article, next, previous }: PostProps) {
-  console.log("article", article);
   return (
     <>
       <div>
