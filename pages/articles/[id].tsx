@@ -1,34 +1,22 @@
 import { motion } from "framer-motion";
-import Link from "next/link";
 import React from "react";
 import GridStyles from "../../components/Grid.module.css";
 import { Article as ArticleProps } from "../../types";
-import { variants } from "../../components/WithMotion";
+import { variants } from "../../helpers/motion";
+import getNews from "../../lib/getNews";
+import getNewsById from "../../lib/getNewsById";
+import { GetStaticProps, GetStaticPaths } from "next";
+import getLinksById from "../../lib/getLinksById";
 
 type PostProps = {
   article: ArticleProps;
-  currentId: string;
+  current: string;
   next: string;
   previous: string;
 };
-// function Next({ href }: { href: string }) {
-//   return (
-//     <Link href={href}>
-//       {" "}
-//       <a>Next</a>{" "}
-//     </Link>
-//   );
-// }
-
-// function Previous({ href }: { href: string }) {
-//   return (
-//     <Link href={href}>
-//       <a>Previous</a>
-//     </Link>
-//   );
-// }
 
 export default function Post({ article, next, previous }: PostProps) {
+  console.log("article", article);
   return (
     <>
       <div>
@@ -38,9 +26,6 @@ export default function Post({ article, next, previous }: PostProps) {
           exit="exit"
           variants={variants}
         >
-          {/* <Link href="/">
-            <a>Home</a>
-          </Link> */}
           <a
             style={{
               margin: "3rem",
@@ -84,7 +69,8 @@ export default function Post({ article, next, previous }: PostProps) {
           </a>
           <div className={GridStyles.newspaper}>
             <h2 className="Layout.letter">{article.title}</h2> {/* <br></br> */}
-            {article.description.slice(0, 190).concat("...")}
+            {article.description &&
+              article.description.slice(0, 190).concat("...")}
           </div>
         </motion.div>
       </div>
@@ -92,13 +78,20 @@ export default function Post({ article, next, previous }: PostProps) {
   );
 }
 
-export async function getStaticPaths() {
-  const res = await fetch(
-    // `${process.env.API_BASE_URL}news?access_key=${process.env.API_ACCESS_KEY}&countries=gb&sources=-mail&sort=published_desc`
-    "http://localhost:3000/api/news"
-  );
+export const getStaticPaths: GetStaticPaths = async () => {
+  // TIL: we previously tried to use fetch here to get the news articles
+  // but because this is run on the server and never on the client,
+  // we can (and should) import the server code directly and use it!
 
-  const data = await res.json();
+  // so instead of this
+  // const res = await fetch("/api/news");
+  // const data = await res.json();
+
+  // do this
+  const data = getNews();
+
+  // more info here:
+  // https://nextjs.org/docs/basic-features/data-fetching/get-static-props#write-server-side-code-directly
 
   const paths = data.map((post) => ({
     params: {
@@ -110,22 +103,30 @@ export async function getStaticPaths() {
     paths,
     fallback: false
   };
-}
-export async function getStaticProps({ params }) {
+};
+export const getStaticProps: GetStaticProps = async ({ params }) => {
   // params contains the post `id`.
   // If the route is like /posts/1, then params.id is 1
-  const articlesResponse = await fetch(
-    // `${process.env.API_BASE_URL}news?access_key=${process.env.API_ACCESS_KEY}&countries=gb&sources=-mail&sort=published_desc/${params.id}`
-    `http://localhost:3000/api/news/${params.id}`
-  );
-  const article = await articlesResponse.json();
 
-  const getLinksResponse = await fetch(
-    `http://localhost:3000/api/news/get-links?currentId=${params.id}`
-  );
+  // same as above, no need for a fetch here
+  // const articlesResponse = await fetch(
+  //   `http://localhost:3000/api/news/${params.id}`
+  // );
+  // const article = await articlesResponse.json();
 
-  const getLinks = await getLinksResponse.json();
+  if (!params?.id || typeof params?.id !== "string") {
+    return { props: { article: null } };
+  }
+
+  const article = getNewsById(params.id);
+
+  // const getLinksResponse = await fetch(
+  //   `http://localhost:3000/api/news/get-links?currentId=${params.id}`
+  // );
+  // const getLinks = await getLinksResponse.json();
+
+  const links = getLinksById(params.id);
 
   // Pass post data to the page via props
-  return { props: { article, ...getLinks } };
-}
+  return { props: { article, ...links } };
+};

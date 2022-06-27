@@ -1,8 +1,8 @@
-import React, { useId } from "react";
-import { motion } from "framer-motion";
+import React from "react";
 import ArticleList from "../components/ArticleList";
+import type { Article as ArticleType } from "../types";
 
-export default function IndexPage({ articles }) {
+export default function IndexPage({ articles }: { articles: ArticleType[] }) {
   return <ArticleList articles={articles} />;
 }
 

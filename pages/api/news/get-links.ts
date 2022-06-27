@@ -1,24 +1,17 @@
-import news from "../../../data/news.json";
+import type { NextApiRequest, NextApiResponse } from "next";
+import getLinksById from "../../../lib/getLinksById";
 
-export default function handler(req, res) {
-  const currentId = req.query.currentId || "";
+export default function handler(req: NextApiRequest, res: NextApiResponse) {
+  const id = req.query.id || "";
 
-  if (!currentId) {
+  if (!id || typeof id !== "string") {
     return res.status(200).send({
-      currentId,
+      current: id,
       next: "",
       previous: ""
     });
   }
 
-  const index = news.findIndex((article) => article.id === currentId);
-  const lastArticleIndex = news.length - 1;
-  const next = index === lastArticleIndex ? news[0] : news[index + 1];
-  const previous = index === 0 ? news[lastArticleIndex] : news[index - 1];
-
-  return res.status(200).send({
-    currentId,
-    next: next.id,
-    previous: previous.id
-  });
+  const links = getLinksById(id);
+  return res.status(200).send(links);
 }
