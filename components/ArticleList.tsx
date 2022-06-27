@@ -49,7 +49,7 @@ const ArticleList = ({ articles }: { articles: ArticleType[] }) => {
         </p>
       }
     >
-      {displayedGroups.map((posts) => {
+      {displayedGroups.map((posts: ArticleType[]) => {
         return (
           <div className={styles.container}>
             {posts.map((article: ArticleType, index: number) => {

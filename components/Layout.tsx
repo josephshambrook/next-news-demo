@@ -3,7 +3,11 @@ import { motion } from "framer-motion";
 import { newspaper } from "./Newspaper";
 import layoutStyles from "./Layout.module.css";
 
-export function Layout(props) {
+type LayoutProps = {
+  children?: React.ReactNode;
+};
+
+export function Layout({ children }: LayoutProps) {
   return (
     <div className={layoutStyles.container}>
       <header className={layoutStyles.header}>
@@ -15,8 +19,9 @@ export function Layout(props) {
         animate="visible"
         exit="exit"
         className={layoutStyles.content}
-        {...props}
-      ></motion.div>
+      >
+        {children}
+      </motion.div>
       <footer className={layoutStyles.footer}>Somerville 2022</footer>
     </div>
   );
