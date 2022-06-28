@@ -1,7 +1,9 @@
+import { Article } from "../types";
+
 // splits large array into smaller chunks of a preset max size
-export const chunkArray = (arr, size) =>
+export const chunkArticles = (arr: Article[], size: number): Article[][] =>
   arr.length > size
-    ? [arr.slice(0, size), ...chunkArray(arr.slice(size), size)]
+    ? [arr.slice(0, size), ...chunkArticles(arr.slice(size), size)]
     : [arr];
 
 // converts a string to dash-separated string
@@ -13,5 +15,3 @@ export function createIdFromTitle(title: string): string {
     .replace(/[^\w ]+/g, "")
     .replace(/ +/g, "-");
 }
-
-export const fetcher = (...args) => fetch(...args).then((res) => res.json());

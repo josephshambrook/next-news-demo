@@ -3,20 +3,20 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Article from "./Article";
 import styles from "./Grid.module.css";
 import { Article as ArticleType } from "../types";
-import { chunkArray } from "../helpers";
+import { chunkArticles } from "../helpers";
 
 const ArticleList = ({ articles }: { articles: ArticleType[] }) => {
   const ARTICLES_PER_ROW = 7;
   const ROWS_PER_PAGE = 2;
 
-  const [groupedArticles, setGroupedArticles] = useState([]);
+  const [groupedArticles, setGroupedArticles] = useState<ArticleType[][]>([]);
   const [displayedGroups, setDisplayedGroups] = useState(
     groupedArticles.slice(0, ROWS_PER_PAGE)
   );
   const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
-    const res = chunkArray(articles, ARTICLES_PER_ROW);
+    const res = chunkArticles(articles, ARTICLES_PER_ROW);
     setGroupedArticles(res);
     setDisplayedGroups(res.slice(0, ROWS_PER_PAGE));
   }, [articles]);
