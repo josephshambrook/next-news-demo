@@ -39,7 +39,8 @@ export default function Post({ article, next, previous }: PostProps) {
               position: "absolute",
               marginTop: "-3em",
               width: "100px",
-              textAlign: "center"
+              textAlign: "center",
+              textDecoration: "none"
             }}
             href={previous}
           >
@@ -51,7 +52,7 @@ export default function Post({ article, next, previous }: PostProps) {
               position: "absolute",
               fontSize: "1.5em",
               margin: "-3.0em",
-              right: 60,
+              right: 80,
               padding: 5,
               width: "100px",
               textAlign: "center",
@@ -60,7 +61,8 @@ export default function Post({ article, next, previous }: PostProps) {
               borderColor: "grey",
               borderRadius: "5px",
               backgroundColor: "ghostwhite",
-              display: "inline"
+              display: "inline",
+              textDecoration: "none"
             }}
             href={next}
           >
@@ -69,7 +71,7 @@ export default function Post({ article, next, previous }: PostProps) {
           <div className={GridStyles.newspaper}>
             <h2 className="Layout.letter">{article.title}</h2> {/* <br></br> */}
             {article.description &&
-              article.description.slice(0, 190).concat("...")}
+              article.description.slice(0, 335).concat("...")}
           </div>
         </motion.div>
       </div>
