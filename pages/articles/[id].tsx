@@ -1,5 +1,6 @@
-import { motion } from "framer-motion";
 import React from "react";
+import Head from "next/head";
+import { motion } from "framer-motion";
 import GridStyles from "../../components/Grid.module.css";
 import { Article as ArticleProps } from "../../types";
 import { variants } from "../../helpers/motion";
@@ -18,6 +19,9 @@ type PostProps = {
 export default function Post({ article, next, previous }: PostProps) {
   return (
     <>
+      <Head>
+        <title>{article.title}</title>
+      </Head>
       <div>
         <motion.div
           initial="initial"

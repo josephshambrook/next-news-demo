@@ -40,8 +40,8 @@ const Article = ({
           <Image
             layout="fill"
             src={image}
-            quality={100}
-            alt="article"
+            quality={80}
+            alt="article image"
             objectFit="cover"
           />
         </div>
