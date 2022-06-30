@@ -1,6 +1,7 @@
 import React from "react";
 import { AnimatePresence } from "framer-motion";
 import type { AppProps } from "next/app";
+import Head from "next/head";
 import "normalize.css";
 import "../public/main.css";
 import { Layout } from "../components/Layout";
@@ -15,10 +16,15 @@ function handleExitComplete() {
 export default function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
   return (
-    <Layout>
-      <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
-        <Component {...pageProps} key={router.route} />
-      </AnimatePresence>
-    </Layout>
+    <>
+      <Head>
+        <title>News</title>
+      </Head>
+      <Layout>
+        <AnimatePresence exitBeforeEnter onExitComplete={handleExitComplete}>
+          <Component {...pageProps} key={router.route} />
+        </AnimatePresence>
+      </Layout>
+    </>
   );
 }

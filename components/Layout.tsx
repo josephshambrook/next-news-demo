@@ -25,7 +25,7 @@ export function Layout({ children }: LayoutProps) {
       >
         {children}
       </motion.div>
-      <footer className={layoutStyles.footer}>Somerville 2022</footer>
+      <footer className={layoutStyles.footer}>© 2022</footer>
     </div>
   );
 }

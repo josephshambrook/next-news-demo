@@ -25,11 +25,8 @@
 
 .footer {
   grid-area: footer;
-  background-color: var(--charcoal);
-  color: white;
   padding: 1rem 0;
   text-align: center;
-  font-size: 18px;
 }
 
 .content {
